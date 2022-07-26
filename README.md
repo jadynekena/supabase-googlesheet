@@ -33,12 +33,12 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 
 
 # Possible limits
-- Your daily quota from your google account
+- Your [daily quota](https://developers.google.com/apps-script/guides/services/quotas) from your google account as stated before
 - Your supabase max rows limit, which can be changed here :
 
 ![max-rows-supabase-api.png](img/max-rows-supabase-api.png)
 
-**I highly recommand you to not set this parameter too high, or to create a strong RLS to make sure your users don't over pull your datas.**
+**I highly recommand you to not set this parameter too high, or to create a strong [RLS](https://supabase.com/docs/guides/auth/row-level-security) to make sure your users don't over pull your datas.**
 
 # The code
 todo
