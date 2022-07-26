@@ -33,7 +33,7 @@ Google Scripts can't handle postsgresql connections yet, so here is a workaround
 Once the datas are available on your Google Sheet, you can explore many possibilities, like using **Google Data Studio** that pulls datas from Google Sheets **[every 15 minutes](https://support.Google.com/datastudio/answer/7020039?hl=en#zippy=%2Cin-this-article%2Cdata-refresh-rates-by-connector)**. 
 
 
-# Possible limits
+# Limits and recommandation
 - Your [daily quota](https://developers.Google.com/apps-script/guides/services/quotas) from your Google account as stated before
 - Your supabase max rows limit, which can be changed here :
 
