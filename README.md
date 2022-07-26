@@ -2,7 +2,7 @@
 In this repo, you will see how to **pull datas from your supabase project using Supabase API to a Google Sheet**. No matter **how many fields and rows** you want to pull, this **should** always work. If not, feel free to contact me so that we can look at your issue.
 
 # The code
-You can get it [here](src/code.gs).
+You can get it [here](Code.gs).
 
 # Prerequisites
 This project assumes that you are already familiar to supabase and Google appscript.   
