@@ -1,5 +1,5 @@
 # Supabase-googlesheet
-In this repo, you will see how to pull datas from your supabase project using **Supabase API**.
+In this repo, you will see how to pull datas from your supabase project using **Supabase API**. No matter **how many columns** or **how many rows** you want to pull, this code **should** always work. If not, feel free to contact me so that we can look at your issue.
 
 # The code
 You can get it [here](src/code.gs).
