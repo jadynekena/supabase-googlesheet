@@ -1,6 +1,9 @@
 # Supabase-googlesheet
 In this repo, you will see how to pull datas from your supabase project using **Supabase API**.
 
+# The code
+You can get it [here](src/code.gs).
+
 # Prerequisites
 This project assumes that you are already familiar to supabase and google appscript.   
 
@@ -40,5 +43,3 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 
 **I highly recommand you to not set this parameter too high, or to create a strong [RLS](https://supabase.com/docs/guides/auth/row-level-security) to make sure your users don't over pull your datas.**
 
-# The code
-todo
