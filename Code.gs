@@ -43,8 +43,8 @@ const SUPABASE_URL = SUPABASE_PROJECT + '/rest/v1/'
 //run this manually first before creating your trigger
 function main() {
   //change the nametable to whatever you want
-  const NAME_TABLE = 'dernieres_donnees'
-  const WHERE_CONDITION = 'Departement=eq.Informatique'//check out the where condition in supabase API docs : https://supabase.com/docs/guides/api
+  const NAME_TABLE = 'yourtablename'
+  const WHERE_CONDITION = 'field=eq.fieldvalue'//check out the where condition in supabase API docs : https://supabase.com/docs/guides/api
   datas = get_datas(NAME_TABLE,WHERE_CONDITION)  
   insert_datas(TARGET_SHEET_TAB,datas)
 }
