@@ -40,6 +40,8 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 
 This error occurs when you are pulling a **text field** that contains **new line character** (\n). To solve this, you can create a view from your table where you replace this character with another (a blank space for instance). Then, fetch this view instead of your table.
 
+> If you find any another issue related to the code, please contact me so that I can help you.
+
 # Limits and recommandation
 
 - Your [daily quota](https://developers.Google.com/apps-script/guides/services/quotas) from your Google account as stated before
