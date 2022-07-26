@@ -41,5 +41,12 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 
 ![max-rows-supabase-api.png](img/max-rows-supabase-api.png)
 
-**I highly recommand you to not set this parameter too high, or to create a strong [RLS](https://supabase.com/docs/guides/auth/row-level-security) to make sure your users don't over pull your datas.**
+**I highly recommand you to** :
+- **set this parameter according to the average amount of datas you are going to pull** (here for me is ~3.5k rows so I have 500 as an offset);
+- **NOT set this parameter too high (as low as possible actually) or/and to create a strong [RLS](https://supabase.com/docs/guides/auth/row-level-security) to make sure that** :
+	+ **your supabase project is not over loading** (I already tried with 10k rows and it's definitely NOT a good idea) ;
+	+ **your users don't over pull your datas.**
+	
+Have fun with your datas !
+
 
