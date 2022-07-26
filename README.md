@@ -8,6 +8,7 @@ This project assumes that you are already familiar to supabase and google appscr
 You will need :
 - the URL of your supabase project
 - its API KEY (service role or anon one, depending your RLS)
+
 ![supabase-project-details.png](img/supabase-project-details.png)
 
 - and of course : your google account.
@@ -34,6 +35,7 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 # Possible limits
 - Your daily quota from your google account
 - Your supabase max rows limit, which can be changed here :
+
 ![max-rows-supabase-api.png](img/max-rows-supabase-api.png)
 
 **I highly recommand you to not set this parameter too high, or to create a strong RLS to make sure your users don't over pull your datas.**
