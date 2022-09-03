@@ -2,7 +2,8 @@
 In this repo, you will see how to **pull datas from your supabase project using Supabase API to a Google Sheet**. No matter **how many fields and rows** you want to pull, this **should** always work. If not, feel free to contact me so that we can look at your issue.
 
 # The code
-You can get it [here](Code.gs).
+You can get it [here](Code.gs).   
+> If you find any issue related to the code, please contact me so that I can help you.
 
 # Prerequisites
 This project assumes that you are already familiar to supabase and Google appscript.   
@@ -32,9 +33,6 @@ Google Scripts can't handle postsgresql connections yet, so here is a workaround
 
 Once the datas are available on your Google Sheet, you can explore many possibilities, like using **Google Data Studio** that pulls datas from Google Sheets **[every 15 minutes](https://support.Google.com/datastudio/answer/7020039?hl=en#zippy=%2Cin-this-article%2Cdata-refresh-rates-by-connector)**. 
 
-# Errors handling
-If you find any issue related to the code, please contact me so that I can help you.
-
 # Limits and recommandation
 
 - Your [daily quota](https://developers.Google.com/apps-script/guides/services/quotas) from your Google account as stated before
@@ -47,7 +45,12 @@ If you find any issue related to the code, please contact me so that I can help 
 - **NOT set this parameter too high (as low as possible actually) or/and to create a strong [RLS](https://supabase.com/docs/guides/auth/row-level-security) to make sure that** :
 	+ **your supabase API is not over loading** (I already tried with 10k rows and it's definitely NOT a good idea)
 	+ **your users don't over pull your datas**
-	
+
+# Roadmap
+- [x] MVP limited by supabase max row limits
+- [ ] Paginations (to fetch all datas)
+
+
 Have fun with your datas !
 
 
