@@ -48,7 +48,7 @@ Once the datas are available on your Google Sheet, you can explore many possibil
 
 # Roadmap
 - [x] MVP limited by supabase max row limits
-- [ ] Paginations (to fetch all datas)
+- [x] Paginations (to fetch all datas)
 
 
 Have fun with your datas !
