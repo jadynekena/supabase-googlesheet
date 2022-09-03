@@ -1,16 +1,12 @@
-/********* SET YOUR GLOBAL PARAMETERS HERE (check main() function afterwards) ********/
-//change them to yours
+/********* SET YOUR GLOBAL PARAMETERS HERE ********/
+//change them with yours
 const SUPABASE_PROJECT = 'https://YOURPROJECTID.supabase.co'
 const SUPABASE_API_KEY = 'YOURANONORSERVICEROLEAPIKEY'
-const ID_SHEET = 'YOURIDSHEETFROMGOOGLESHEETS'
 
-//in french version, google sheet delimiter is semi colon (;)
-//You can adapt it to yours BUT BE AWARE OF THAT IF YOUR GOOGLE SHEET DELIMITER IS CONTAINED IN YOUR PULLED DATAS, INSERTING DATAS TO YOUR SHEET MIGHT WORK IMPROPERLY. SEE THE NEXT PARAMETER TO HELP WITH IT.
-const SHEET_DELIMITER = ';'
-
-//You can disable column split (and do it manually) by setting this to false
-const COLUMN_SPLIT = true
-/********* END OF YOUR GLOBAL PARAMETERS (check main() function afterwards) ********/
+const ID_SHEET = 'YOURSHEETID'
+const NAME_TABLE = 'YOURTABLEORVIEW'
+const WHERE_CONDITION = 'field=eq.fieldvalue'//check out the where condition in supabase API docs : https://supabase.com/docs/guides/api
+/********* END OF YOUR GLOBAL PARAMETERS ********/
 
 
 
@@ -19,16 +15,8 @@ const COLUMN_SPLIT = true
 
 
 /********** OTHER VARIABLES YOU DON'T HAVE TO CHANGE ***********/
-//pulls datas into the first tab of your sheet 
 const TARGET_SHEET = SpreadsheetApp.openById(ID_SHEET)
-const TARGET_SHEET_TAB = TARGET_SHEET.getSheets()[0] //or use TARGET_SHEET.getSheetByName('nameofyoursheettab') 
-
-//this is important to get datas as CSV and NOT json from supabase API
-const opt = {
-    'headers': {
-      'Accept':	'text/csv'
-    }
-}
+const TARGET_SHEET_TAB = TARGET_SHEET.getSheets()[0] //this pulls datas into the first tab of your sheet. You can also use : TARGET_SHEET.getSheetByName('nameofyoursheettab') 
 const SUPABASE_URL = SUPABASE_PROJECT + '/rest/v1/' 
 /********** END OF OTHER VARIABLES YOU DON'T HAVE TO CHANGE ***********/
 
@@ -42,14 +30,9 @@ const SUPABASE_URL = SUPABASE_PROJECT + '/rest/v1/'
 
 //run this manually first before creating your trigger
 function main() {
-  //change the nametable to whatever you want
-  const NAME_TABLE = 'yourtablename'
-  const WHERE_CONDITION = 'field=eq.fieldvalue'//check out the where condition in supabase API docs : https://supabase.com/docs/guides/api
   datas = get_datas(NAME_TABLE,WHERE_CONDITION)  
   insert_datas(TARGET_SHEET_TAB,datas)
 }
-
-
 
 
 
@@ -68,7 +51,7 @@ function get_datas(name_table,where_condition) {
   console.log({url})
 
   //fetching with the right headers
-  response = UrlFetchApp.fetch(url, opt)
+  response = UrlFetchApp.fetch(url)
 
   //uncomment this if you want to monitor your datas
   /*
@@ -79,42 +62,38 @@ function get_datas(name_table,where_condition) {
   return response.getContentText();
 }
 
-function empty_sheet(sh){
-  sh.clear()
-}
-
-function insert_datas(sh,val,split_with){
+function insert_datas(sh,jsondatas){
   //always clear previous versions
-  empty_sheet(sh)
+  sh.clear()
 
-  all_rows = rearrangecsv(val)
-  nb_rows = all_rows.length
-  nb_col = all_rows[0].length
-
-  sh.getRange(1,1,nb_rows,nb_col).setValues(all_rows)
-
-  if(COLUMN_SPLIT){
-    if(split_with){
-      sh.getRange('A:A').splitTextToColumns(split_with);
-    }else{
-      sh.getRange('A:A').splitTextToColumns();
-    }
+  var all_rows = [[]]
+  if(JSON.parse(jsondatas).length > 0){
+    all_rows = json2arrays(jsondatas)
+    sh.getRange(1,1,all_rows.length,all_rows[0].length).setValues(all_rows)
   }
-
-  console.log('INSERTED '+nb_rows+' ROWS.')
-
+  console.log('INSERTED '+(all_rows.length)+' ROWS ' + ' WITH ' + all_rows[0].length + ' COLUMNS.' )
+  return all_rows;
 }
 
-function rearrangecsv(csvContent){
-  console.log('\n\nREARRANGING CSV...')
-
-	res = csvContent.split('\n').map(e => e.split(SHEET_DELIMITER))
-  console.log(res[100])
-	initial_rows = res.length
-	res = res.map(row => row.map(e => e.trim()))
-  console.log(res[100])
-
-	console.log('Keeping '+res.length+' / '+initial_rows+' rows.')
-  return res
+function json2arrays(jsoncontent){  
+  var json_list = JSON.parse(jsoncontent)
+  var array = [];
+  var headers = []
+  var firstline = json_list[0]
+  if(firstline){
+    headers =  Object.keys(firstline)
+    array.push(headers)
+  }  
+  for(var i = 0; i < json_list.length; i++) {
+    var obj = json_list[i];
+    var temp = []
+    Object.keys(obj).map((key) => temp.push(obj[key]))
+    array.push(temp);
+  }
+  return array 
 }
+
+
+
+
 
